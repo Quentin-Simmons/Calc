@@ -14,12 +14,17 @@ public class CalcCosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calc_cos);
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.COS_INPUT);
-
+        Calculator calc = Calculator.getInstance();
+        String userInput = intent.getStringExtra(MainActivity.COS_INPUT);
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView2);
-        Double f = Double.parseDouble(message);
-        Double cos_f = Math.cos(f);
-        textView.setText(cos_f.toString());
+        double value = Double.parseDouble(userInput);
+        try{
+            double result = calc.doOperation(value, Calculator.Operation.COS);
+            textView.setText(String.valueOf(result));
+        }
+        catch (CalcException e) {
+            textView.setText(e.getMessage());
+        }
     }
 }

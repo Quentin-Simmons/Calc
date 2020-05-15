@@ -15,15 +15,20 @@ public class CalcTanActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.TAN_INPUT);
-
+        String userInput = intent.getStringExtra(MainActivity.TAN_INPUT);
+        Calculator calc = Calculator.getInstance();
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView3);
-        Double f = Double.parseDouble(message);
-        Double tan_f = Math.tan(f);
-        textView.setText(tan_f .toString());
+        double value = Double.parseDouble(userInput);
 
+        try {
+            double result = calc.doOperation(value, Calculator.Operation.TAN);
+            textView.setText(String.valueOf(result));
 
+        } catch (CalcException e)
+        {
+          textView.setText(e.getMessage());
+        }
 
 
     }

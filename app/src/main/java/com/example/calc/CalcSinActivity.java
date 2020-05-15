@@ -17,14 +17,23 @@ public class CalcSinActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.SIN_INPUT);
-
+        String userInput = intent.getStringExtra(MainActivity.SIN_INPUT);
+        Calculator calc = Calculator.getInstance();
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
-        Double f = Double.parseDouble(message);
-        Double sin_f = Math.sin(f);
-        textView.setText(sin_f .toString());
-
-
+        double value = Double.parseDouble(userInput);
+        try {
+            double result = calc.doOperation(value, Calculator.Operation.SIN);
+            textView.setText(String.valueOf(result));
+        } catch (CalcException e)
+    {
+        textView.setText(e.getMessage());
     }
+
+
+
+
+
+
+}
 }

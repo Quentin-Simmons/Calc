@@ -1,30 +1,29 @@
 package com.example.calc;
 
-public class Calc {
+public class Calculator {
 
     // Available operations
-    public enum Operator {COS, SIN, TAN}
+    public enum Operation {COS, SIN, TAN}
 
 
-    private static Calc instance = null;
+    private static Calculator instance = null;
 
     // private constructor restricted to this class itself
-    private Calc()
+    private Calculator()
     {
 
     }
 
     // static method to create instance of Singleton class
-    public static Calc getInstance()
+    public static Calculator getInstance()
     {
         if (instance == null)
-            instance = new Calc();
-
+            instance = new Calculator();
         return instance;
     }
 
 
-    public double doThing(double operand, Operator op) throws CalcException {
+    public double doOperation(double operand, Operation op) throws CalcException {
         double val = 0.0;
         switch (op) {
             case COS:
@@ -37,7 +36,7 @@ public class Calc {
                 val = Math.tan(operand);
                 break;
             default:
-               throw new CalcException("Invalid operation");
+               throw new CalcException("Invalid Calculator Operation");
         }
         return val;
     }
