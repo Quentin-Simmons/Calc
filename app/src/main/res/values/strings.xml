@@ -2,4 +2,6 @@
     <string name="app_name">Calc</string>
     <string name="number_message">Enter a number</string>
     <string name="sin_button">Sin</string>
+    <string name="cos_button">Cos</string>
+    <string name="tan_button">Tan</string>
 </resources>
